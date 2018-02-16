@@ -4,7 +4,7 @@ describe('MyEndpoint Controller Integration', function() {
   describe('GET /test', function() {
     it('should return 200 status code', function *() {
       yield request(strapi.config.url)
-        .get('/my_endpoint')
+        .get('/test')
         .expect(200)
         .expect('Content-Type', /json/)
         .end();
