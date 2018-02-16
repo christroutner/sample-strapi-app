@@ -14,4 +14,4 @@ services:
 
 before_install:
   - ./install-mongo
-  - sudo apt-get install mocha
+  - sudo npm install -g mocha
