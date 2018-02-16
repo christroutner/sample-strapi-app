@@ -1,0 +1,42 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "devicePublicData",
+    "description": "This model holds the public data for a device."
+  },
+  "attributes": {
+    "owner": {
+      "model": "user",
+      "via": "_id",
+      "plugin": "users-permissions"
+    },
+    "deviceName": {
+      "type": "string"
+    },
+    "deviceDesc": {
+      "type": "text"
+    },
+    "uptime": {
+      "type": "float"
+    },
+    "memory": {
+      "type": "integer"
+    },
+    "diskSpace": {
+      "type": "integer"
+    },
+    "processor": {
+      "type": "string"
+    },
+    "internetSpeed": {
+      "type": "integer"
+    },
+    "expiration": {
+      "type": "date"
+    },
+    "checkinTimeStamp": {
+      "type": "date"
+    }
+  }
+}

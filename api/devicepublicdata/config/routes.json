@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/devicepublicdata",
+      "handler": "DevicePublicData.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/devicepublicdata/:_id",
+      "handler": "DevicePublicData.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/devicepublicdata",
+      "handler": "DevicePublicData.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/devicepublicdata/:_id",
+      "handler": "DevicePublicData.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/devicepublicdata/:_id",
+      "handler": "DevicePublicData.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
