@@ -13,5 +13,5 @@ services:
   - docker
 
 before_install:
-  #- ./init
-  #- docker build -t ob-server ./open-bazaar/
+  - ./installMongo
+  - apt-get install mocha
