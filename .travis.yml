@@ -13,5 +13,5 @@ services:
   - docker
 
 before_install:
-  - ./installMongo
+  - ./install-mongo
   - apt-get install mocha
