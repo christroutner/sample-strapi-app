@@ -2,16 +2,23 @@
   This is a mocha integration test of the strap api.
 */
 
+/*
 const rp = require('request-promise');
 const assert = require('chai').assert;
 
-
-describe('Endpoint with request-promise', function() {
-  describe('GET /test', function() {
+describe('Device Public Data', function() {
+  describe('POST /test', function() {
     it('should return 200 status code', async () => {
+      console.log(`strapi.config: ${JSON.stringify(strapic.config,null,2)}`);
+
       let options = {
+        method: POST,
         uri: strapi.config.url,
-        resolveWithFullResponse: true
+        resolveWithFullResponse: true,
+        json: true,
+        body: {
+
+        }
       };
       let result = await rp(options);
       //console.log(`result stringified: ${JSON.stringify(result,null,2)}`);
@@ -19,3 +26,4 @@ describe('Endpoint with request-promise', function() {
     });
   });
 });
+*/
