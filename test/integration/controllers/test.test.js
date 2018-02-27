@@ -1,8 +1,8 @@
 const request = require('co-supertest');
 const rp = require('request-promise');
-const chai = require('chai');
+//const chai = require('chai');
 //let chaiHttp = require('chai-http');
-const assert = chai.assert();
+const assert = require('chai').assert;
 //const should = chai.should();
 
 describe('MyEndpoint Controller Integration', function() {
@@ -31,6 +31,7 @@ describe('Endpoint with request-promise', function() {
       //result.expect(200);
       //result.expect('Content-Type', /json/);
       //assert.
+      assert.equal(result.statusCode, 200);
     });
   });
 });
