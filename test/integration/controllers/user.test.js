@@ -52,7 +52,7 @@ describe('User', function() {
 
 
   describe('DELETE /user/:id', function() {
-    it('should return 200 status code', async () => {
+    it('should return 401 status code', async () => {
 
       //console.log(`strapi plugins: ${JSON.stringify(strapi.plugins,null,2)}`);
       console.log(`UserId: ${user.id}`);
