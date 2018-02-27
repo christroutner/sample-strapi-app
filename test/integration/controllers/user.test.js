@@ -70,7 +70,7 @@ describe('User', function() {
       };
       let result = await rp(options);
       console.log(`result stringified: ${JSON.stringify(result,null,2)}`);
-      assert.equal(result.statusCode, 200);
+      assert.equal(result.statusCode, 401);
     });
   });
 });
