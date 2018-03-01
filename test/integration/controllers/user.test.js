@@ -47,6 +47,45 @@ describe('User', function() {
   });
 
 
+  describe('POST /auth/local/register - Create Second (Test) User', function() {
+    it('should create new user or report account already exists.', async () => {
+
+      try {
+
+        let options = {
+          method: 'POST',
+          uri: strapi.config.url+'/auth/local/register',
+          resolveWithFullResponse: true,
+          json: true,
+          body: {
+            _id: null,
+            username: 'test',
+            email: 'test@test.com',
+            password: '123456'
+          }
+        };
+
+        let result = await rp(options);
+
+        //console.log(`result stringified: ${JSON.stringify(result,null,2)}`);
+        user.id = result.body.user._id;
+        user.jwt = result.body.jwt;
+        console.log(`user.id: ${user.id}`);
+
+        assert(result.statusCode, 200, 'Creates new user.');
+
+      } catch(err) {
+
+        if(err.statusCode === 400)
+          assert(err.error.message, 'Email is already taken.', 'User account already created. Got expected response.');
+        else {
+          console.error('Error: ',err);
+          console.log(`err stringified: ${JSON.stringify(err,null,2)}`);
+        }
+      }
+    });
+  });
+
   describe('POST /auth/local - Log in as admin user', function() {
     it('Should log in existing user.', async () => {
 
@@ -79,43 +118,6 @@ describe('User', function() {
   });
 
 
-  describe('POST /auth/local/register - Create Second (Test) User', function() {
-    it('should create new user or report account already exists.', async () => {
-
-      try {
-
-        let options = {
-          method: 'POST',
-          uri: strapi.config.url+'/auth/local/register',
-          resolveWithFullResponse: true,
-          json: true,
-          body: {
-            _id: null,
-            username: 'test',
-            email: 'test@test.com',
-            password: '123456'
-          }
-        };
-
-        let result = await rp(options);
-
-        //console.log(`result stringified: ${JSON.stringify(result,null,2)}`);
-        user.id = result.body.user._id;
-        user.jwt = result.body.jwt;
-
-        assert(result.statusCode, 200, 'Creates new user.');
-
-      } catch(err) {
-
-        if(err.statusCode === 400)
-          assert(err.error.message, 'Email is already taken.', 'User account already created. Got expected response.');
-        else {
-          console.error('Error: ',err);
-          console.log(`err stringified: ${JSON.stringify(err,null,2)}`);
-        }
-      }
-    });
-  });
 
   describe('DELETE /user/:id - Delete Test User', function() {
     it('should return 401 status code', async () => {
