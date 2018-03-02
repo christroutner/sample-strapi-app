@@ -14,7 +14,7 @@ async function explorePermissions() {
       json: true,
       body: {
         identifier: 'trout',
-        password: '0mega16'
+        password: 'test'
       }
     };
 
