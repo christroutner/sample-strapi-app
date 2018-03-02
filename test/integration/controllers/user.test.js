@@ -7,6 +7,31 @@ const assert = require('chai').assert;
 const admin = {};
 const user = {};
 
+before(async () => {
+/*
+  try {
+
+
+    let options = {
+      method: 'GET',
+      uri: strapi.config.url+'/user-permissions/roles',
+      resolveWithFullResponse: true,
+    };
+
+    const result = await rp(options);
+
+    console.log('result: ' + JSON.stringify(result, null, 2));
+
+  } catch (err) {
+    if (err.name === 'RequestError') {
+      console.error('Note: Start KeystoneJS server before running tests. Exiting.');
+    } else
+		{ console.error('err: ' + JSON.stringify(err, null, 2)); }
+    process.exit(1);
+  }
+*/
+});
+
 // A series of tests on general user API behavior.
 // Note: The DELETE API is broken. This tests test actual behavior, not expected
 // behavior. If this test breaks, it's a good thing.
