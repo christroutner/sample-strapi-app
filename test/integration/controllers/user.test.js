@@ -7,7 +7,7 @@ const assert = require('chai').assert;
 const admin = {};
 const user = {};
 
-describe('User', function() {
+describe('General User Tests', function() {
 
   // The first user created on a Strapi system is automatically the administrator.
   describe('POST /auth/local/register - Create First (Admin) User', function() {
@@ -86,6 +86,37 @@ describe('User', function() {
     });
   });
 
+  describe('POST /auth/local - Log in as test user', function() {
+    it('Should log in existing user.', async () => {
+
+      try {
+        let options = {
+          method: 'POST',
+          uri: strapi.config.url+'/auth/local',
+          resolveWithFullResponse: true,
+          json: true,
+          body: {
+            identifier: 'test',
+            password: '123456'
+          }
+        };
+
+        let result = await rp(options);
+
+        //console.log(`result stringified: ${JSON.stringify(result,null,2)}`);
+
+        user.id = result.body.user._id;
+        user.jwt = result.body.jwt;
+
+        assert.equal(result.statusCode, 200, 'Successfully logged in test user.');
+
+      } catch(err) {
+        console.error('Error: ',err);
+        console.log(`err stringified: ${JSON.stringify(err,null,2)}`);
+      }
+    });
+  });
+
   describe('POST /auth/local - Log in as admin user', function() {
     it('Should log in existing user.', async () => {
 
@@ -108,7 +139,7 @@ describe('User', function() {
         admin.id = result.body.user._id;
         admin.jwt = result.body.jwt;
 
-        assert.equal(result.statusCode, 200, 'Successfully logged in test user.');
+        assert.equal(result.statusCode, 200, 'Successfully logged in admin user.');
 
       } catch(err) {
         console.error('Error: ',err);
@@ -120,7 +151,7 @@ describe('User', function() {
 
 
   describe('DELETE /user/:id - Delete Test User', function() {
-    it('should return 401 status code', async () => {
+    it('should result in 500 internal error.', async () => {
 
       try {
         //console.log(`strapi plugins: ${JSON.stringify(strapi.plugins,null,2)}`);
@@ -147,8 +178,8 @@ describe('User', function() {
         assert(result.statusCode, 200, 'Admin deletes test user.');
 
       } catch(err) {
-        if(err.statusCode === 401)
-          assert.equal(err.statusCode, 401, 'Admin user not allowed to delete test user?');
+        if(err.statusCode === 500)
+          assert.equal(err.statusCode, 500, 'Internal server error expected.');
         else {
           console.error('Error: ',err);
           console.log(`err stringified: ${JSON.stringify(err,null,2)}`);
